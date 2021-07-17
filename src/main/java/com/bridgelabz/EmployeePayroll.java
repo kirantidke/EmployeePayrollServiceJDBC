@@ -7,22 +7,26 @@ import java.sql.Statement;
 import java.sql.*;
 
 public class EmployeePayroll {
-
-	static final String url = "jdbc:mysql://localhost/";;
-	static final String user = "root";
-	static final String password = "root";
-
 	public static void main(String[] args) throws Exception {
+		
+	String url = "jdbc:mysql://localhost:3306/EmployeePayrollServices";
+	String userName = "root";
+	String password = "root";
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	
 
-		// Open a connection
-		try (Connection con = DriverManager.getConnection(url, user, password);
-				Statement stmt = con.createStatement();) {
-			String sql = "create database EmployeePayrollServices";
-			stmt.executeUpdate(sql);
-			System.out.println("Database created successfully...");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
+	// establish connection
+	try(
+	Connection con = DriverManager.getConnection(url, userName, password);
+	String sql = "create table EmployeePayroll(id int not null primary key,name varchar(255),salary int,startDate date)";
+	//create statement
+	Statement st = con.createStatement();
+	){
+	//execute the query
+	st.executeUpdate(sql);
+	System.out.println("table created successfully....");
+	}
+	catch (SQLException e) {
+        e.printStackTrace();
 	}
 }
