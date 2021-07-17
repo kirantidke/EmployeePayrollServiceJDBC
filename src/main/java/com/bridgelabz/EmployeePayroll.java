@@ -53,14 +53,17 @@ public class EmployeePayroll {
 	//	} catch (Exception e) {
 		//	e.printStackTrace();
 		//}
-		//retrive all data from the table
+		//trtriving salary using cast and now
 		
-		ResultSet rs = st.executeQuery("select * EmployeePayroll");
-		int id = rs.getInt("id");
-		String name = rs.getString("name");
+		ResultSet rs = st.executeQuery("select salary from EmployeePayroll where EmployeeName =ali");
+		ResultSet rss = st.executeQuery("select * from EmployeePayroll where startDate between cast('2020-05-05' as date) and date(now())");
+		
+		//int id = rs.getInt("id");
+		//String name = rs.getString("name");
 		int salary = rs.getInt("salary");
-		Date startDate = rs.getDate("startDate");
-		System.out.println(id+ " " +name+ " " + salary + " " + startDate);
+		int salaryy = rss.getInt("salary");
+		//Date startDate = rs.getDate("startDate");
+		System.out.println( salary);
 		
 
 	}
